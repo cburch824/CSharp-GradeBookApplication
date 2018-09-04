@@ -13,7 +13,7 @@ namespace GradeBook.GradeBooks
 
 		public override char GetLetterGrade(double averageGrade)
 		{
-			if (this.Students.Count < 5) //Case: less than 5 students in a class
+			if (Students.Count < 5) //Case: less than 5 students in a class
 				throw new InvalidOperationException("Ranked grading requires 5 or more students.");
 
 			//Determines 20% of students
@@ -45,9 +45,23 @@ namespace GradeBook.GradeBooks
 			}
 			else
 				return 'F';
+	
+		}
 
+		public override void CalculateStatistics()
+		{
+			if(Students.Count < 5)
+				Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+			else
+				base.CalculateStatistics();
+		}
 
-
+		public override void CalculateStudentStatistics(string name)
+		{
+			if (Students.Count < 5)
+				Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+			else
+				base.CalculateStudentStatistics(name);
 		}
 	}
 }
